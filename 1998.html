@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wo Stream — Streaming 4K Ultra HD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #07070a;
+      --surface: #111118;
+      --surface-light: #181822;
+      --border: rgba(255, 255, 255, 0.08);
+      --accent: #e50914;
+      --accent-glow: rgba(229, 9, 20, 0.35);
+      --wa: #25d366;
+      --text: #ffffff;
+      --muted: #a1a1b3;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Outfit', 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image:
+        radial-gradient(circle at 50% -10%, rgba(229, 9, 20, 0.18), transparent 45%),
+        radial-gradient(circle at 85% 30%, rgba(229, 9, 20, 0.06), transparent 35%);
+    }
+
+    /* Sticky Glass Header */
+    .navbar-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(7, 7, 10, 0.78);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    header {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #e50914, #9b050d);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px var(--accent-glow);
+    }
+
+    .logo-text {
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+
+    .logo-text span {
+      color: var(--accent);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .nav-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: #fff;
+    }
+
+    .wa-logo-btn {
+      background: var(--wa);
+      color: #ffffff;
+      text-decoration: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+    }
+
+    .wa-logo-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 68px 20px 42px;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 7px 16px;
+      border-radius: 50px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: #e4e4ec;
+      margin-bottom: 22px;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #25d366;
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+      70% { box-shadow: 0 0 0 8px rgba(37, 211, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.1rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+      background: linear-gradient(180deg, #ffffff 0%, #c9c9d6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, #ff3b45, #e50914);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 600px;
+      margin: 0 auto 28px;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #e50914, #b80710);
+      color: #fff;
+      text-decoration: none;
+      padding: 14px 30px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      box-shadow: 0 8px 25px var(--accent-glow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(229, 9, 20, 0.5);
+    }
+
+    .trust-strip {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+      margin-top: 34px;
+      color: #b5b5c4;
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+
+    .trust-strip span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .trust-strip svg {
+      color: var(--wa);
+    }
+
+    /* Container & Section Headers */
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .section-head {
+      text-align: center;
+      margin: 30px 0 32px;
+    }
+
+    .section-head h2 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    /* 4-Card Balanced Grid for Profil Privé */
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 1024px) {
+      .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .grid-4 {
+        grid-template-columns: 1fr;
+      }
+      .nav-link {
+        display: none;
+      }
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.015) 100%);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 26px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(229, 9, 20, 0.6);
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.5);
+    }
+
+    .card.best-value {
+      border-color: rgba(229, 9, 20, 0.55);
+      background: linear-gradient(180deg, rgba(229, 9, 20, 0.1) 0%, rgba(17, 17, 24, 0.95) 100%);
+    }
+
+    .card-tag {
+      position: absolute;
+      top: -11px;
+      right: 18px;
+      background: linear-gradient(90deg, #e50914, #ff3b45);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      padding: 4px 11px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 12px var(--accent-glow);
+    }
+
+    .duration-pill {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.06);
+      color: #e0e0ea;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      font-size: 2.15rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 18px;
+      letter-spacing: -0.5px;
+    }
+
+    .price span {
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .features {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .features li {
+      color: #cfcfdc;
+      margin-bottom: 9px;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .features li::before {
+      content: "✓";
+      color: var(--wa);
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .buy-btn {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 11px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font-size: 0.96rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    }
+
+    .buy-btn:hover,
+    .card.best-value .buy-btn {
+      background: linear-gradient(135deg, #e50914, #c20710);
+      border-color: transparent;
+    }
+
+    .card.best-value .buy-btn:hover {
+      background: linear-gradient(135deg, #ff1e29, #d40812);
+    }
+
+    /* VIP Featured Full-Width Card for Account Privé */
+    .vip-card {
+      margin-top: 26px;
+      background: linear-gradient(135deg, rgba(229, 9, 20, 0.14) 0%, #13131c 55%, rgba(255, 193, 7, 0.08) 100%);
+      border: 1px solid rgba(229, 9, 20, 0.5);
+      border-radius: 20px;
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 28px;
+      align-items: center;
+      position: relative;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+    }
+
+    @media (max-width: 780px) {
+      .vip-card {
+        grid-template-columns: 1fr;
+        padding: 26px 22px;
+      }
+    }
+
+    .vip-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(90deg, #e50914, #ff5722);
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .vip-left h3 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .vip-left p {
+      color: var(--muted);
+      font-size: 0.96rem;
+      margin-bottom: 18px;
+    }
+
+    .vip-features {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px 18px;
+      list-style: none;
+    }
+
+    @media (max-width: 520px) {
+      .vip-features {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .vip-features li {
+      font-size: 0.92rem;
+      color: #e4e4ef;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .vip-features li::before {
+      content: "★";
+      color: #ffc107;
+      font-size: 0.9rem;
+    }
+
+    .vip-right {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .vip-right .price {
+      font-size: 2.5rem;
+      margin-bottom: 6px;
+    }
+
+    .vip-sub {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-bottom: 18px;
+    }
+
+    .vip-btn {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #e50914, #b80710);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 22px var(--accent-glow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .vip-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(229, 9, 20, 0.55);
+    }
+
+    /* Steps Section */
+    .steps-section {
+      margin-top: 70px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px 28px;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 28px;
+    }
+
+    .step-card {
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      text-align: center;
+    }
+
+    .step-num {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(229, 9, 20, 0.16);
+      color: #ff4d57;
+      font-weight: 800;
+      font-size: 1.05rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .step-card h4 {
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+
+    .step-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* FAQ Accordion */
+    .faq-section {
+      max-width: 780px;
+      margin: 65px auto 20px;
+    }
+
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      color: #fff;
+      padding: 18px 20px;
+      text-align: left;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-q span {
+      color: var(--accent);
+      font-size: 1.3rem;
+      transition: transform 0.25s;
+    }
+
+    .faq-item.open .faq-q span {
+      transform: rotate(45deg);
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      color: var(--muted);
+      font-size: 0.94rem;
+      padding: 0 20px;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 200px;
+      padding: 0 20px 18px;
+    }
+
+    /* Payments */
+    .payments {
+      text-align: center;
+      margin: 50px 0 15px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .pay-tags {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .pay-tag {
+      background: var(--surface-light);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 10px;
+      color: #e4e4ef;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #666677;
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+    }
+
+    /* Floating WhatsApp Logo Button */
+    .wa-float {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      z-index: 95;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--wa);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 22px rgba(37, 211, 102, 0.45);
+      transition: transform 0.2s;
+    }
+
+    .wa-float:hover {
+      transform: scale(1.08);
+    }
+
+    /* Checkout Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.82);
+      backdrop-filter: blur(6px);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: #14141d;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 20px;
+      max-width: 430px;
+      width: 100%;
+      padding: 28px;
+      position: relative;
+      animation: popIn 0.22s ease;
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.94); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      background: rgba(255, 255, 255, 0.06);
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      color: #ccc;
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal h3 {
+      font-size: 1.35rem;
+      margin-bottom: 6px;
+    }
+
+    .selected-info {
+      background: rgba(229, 9, 20, 0.1);
+      padding: 12px 15px;
+      border-radius: 10px;
+      margin: 14px 0 20px;
+      border: 1px solid rgba(229, 9, 20, 0.35);
+      font-size: 0.95rem;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 0.88rem;
+      color: #ccc;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 13px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #0c0c12;
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--accent);
+    }
+
+    .confirm-btn {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      background: var(--wa);
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      box-shadow: 0 6px 18px rgba(37, 211, 102, 0.3);
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .confirm-btn:hover {
+      background: #1ebe5d;
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar-wrap">
+    <header>
+      <a href="#" class="brand">
+        <div class="brand-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+        <div class="logo-text">Wo <span>Stream</span></div>
+      </a>
+
+      <div class="header-actions">
+        <a href="#offres" class="nav-link">Offres</a>
+        <a href="#comment" class="nav-link">Kifach Tachri</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        <a href="#" id="directWaBtn" class="wa-logo-btn" aria-label="Contact" title="Tawassel m3ana">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.766.469 3.484 1.344 5l-1.406 5.156 5.281-1.375c1.469.797 3.109 1.219 4.75 1.219 5.516 0 9.969-4.453 9.969-9.969S17.547 2 12.031 2zm5.813 14.125c-.25.703-1.438 1.344-2 1.422-.516.078-1.172.109-1.891-.125-.438-.141-1-.328-1.719-.641-3.016-1.313-4.984-4.359-5.141-4.563-.156-.203-1.234-1.641-1.234-3.125 0-1.484.781-2.219 1.063-2.516.281-.297.609-.375.813-.375.203 0 .406 0 .578.016.188.016.438-.078.688.516.25.609.859 2.094.938 2.25.078.156.125.344.031.547-.094.203-.141.328-.297.5-.156.172-.313.391-.453.516-.156.141-.313.297-.141.594.172.297.781 1.281 1.672 2.078 1.156 1.031 2.125 1.344 2.422 1.5.297.156.469.125.641-.078.172-.203.75-.875.953-1.172.203-.297.406-.25.672-.156.266.094 1.703.797 2 .953.297.156.484.219.563.344.078.125.078.734-.172 1.438z"/>
+          </svg>
+        </a>
+      </div>
+    </header>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="live-badge">
+      <span class="pulse-dot"></span>
+      Livraison Fouriya • Service 7/7
+    </div>
+    <h1>Tferrej b Qualité <em>4K Ultra HD</em> bla T9ta3</h1>
+    <p>Profils privés m7miyin b Code PIN dyalk wla compte privé kamel. Khlass sahl f l-Maghrib o tawssil f a9al mn 5 d9aye9.</p>
+    <a href="#offres" class="hero-cta">Chouf les Offres ↓</a>
+
+    <div class="trust-strip">
+      <span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+        Code PIN Personnel
+      </span>
+      <span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+        Garantie 100%
+      </span>
+      <span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+        Smart TV, PC, Phone
+      </span>
+    </div>
+  </section>
+
+  <!-- Offers Section -->
+  <main class="container" id="offres">
+    <div class="section-head">
+      <h2>Profils Privés + Code PIN</h2>
+      <p>Kolla wa7ed kayakhod profil dyalo bo7do m7mi b Code PIN</p>
+    </div>
+
+    <!-- 4 Balanced Cards -->
+    <div class="grid-4">
+
+      <!-- 1 Mois -->
+      <div class="card">
+        <div>
+          <span class="duration-pill">1 Mois</span>
+          <h3>Profil Privé + PIN</h3>
+          <div class="price">40 DH <span>/ Chher</span></div>
+          <ul class="features">
+            <li>Profil khass bik bo7dek</li>
+            <li>M7mi b Code PIN dyalk</li>
+            <li>Qualité 4K Ultra HD</li>
+            <li>1 Appareil (TV, PC, Phone)</li>
+            <li>Garantie kamla 1 mois</li>
+          </ul>
+        </div>
+        <button class="buy-btn" onclick="openModal('Profil Privé + Code PIN (1 Mois)', '40 DH')">Chri Daba</button>
+      </div>
+
+      <!-- 3 Mois -->
+      <div class="card best-value">
+        <div class="card-tag">A9wa Talab 🔥</div>
+        <div>
+          <span class="duration-pill">3 Mois</span>
+          <h3>Profil Privé + PIN</h3>
+          <div class="price">110 DH <span>/ 3 Chhour</span></div>
+          <ul class="features">
+            <li>Profil khass bik bo7dek</li>
+            <li>M7mi b Code PIN dyalk</li>
+            <li>Qualité 4K Ultra HD</li>
+            <li>1 Appareil (TV, PC, Phone)</li>
+            <li>Garantie kamla 3 mois</li>
+          </ul>
+        </div>
+        <button class="buy-btn" onclick="openModal('Profil Privé + Code PIN (3 Mois)', '110 DH')">Chri Daba</button>
+      </div>
+
+      <!-- 6 Mois -->
+      <div class="card">
+        <div>
+          <span class="duration-pill">6 Mois</span>
+          <h3>Profil Privé + PIN</h3>
+          <div class="price">200 DH <span>/ 6 Chhour</span></div>
+          <ul class="features">
+            <li>Profil khass bik bo7dek</li>
+            <li>M7mi b Code PIN dyalk</li>
+            <li>Qualité 4K Ultra HD</li>
+            <li>Rba7 40 DH f l-pack</li>
+            <li>Garantie kamla 6 mois</li>
+          </ul>
+        </div>
+        <button class="buy-btn" onclick="openModal('Profil Privé + Code PIN (6 Mois)', '200 DH')">Chri Daba</button>
+      </div>
+
+      <!-- 1 An -->
+      <div class="card">
+        <div>
+          <span class="duration-pill">12 Mois</span>
+          <h3>Profil Privé + PIN</h3>
+          <div class="price">380 DH <span>/ 1 An</span></div>
+          <ul class="features">
+            <li>Profil khass bik bo7dek</li>
+            <li>M7mi b Code PIN dyalk</li>
+            <li>Qualité 4K Ultra HD</li>
+            <li>A7ssan tamane l-3am kamel</li>
+            <li>Garantie kamla 12 mois</li>
+          </ul>
+        </div>
+        <button class="buy-btn" onclick="openModal('Profil Privé + Code PIN (1 An)', '380 DH')">Chri Daba</button>
+      </div>
+
+    </div>
+
+    <!-- VIP Full-Width Card for Account Privé -->
+    <div class="vip-card">
+      <div class="vip-left">
+        <span class="vip-badge">👑 Compte Privé Kamel</span>
+        <h3>Account Privé (PRV) — 1 Mois</h3>
+        <p>Bghiti l-compte kamel lik bo7dek wla l-3a2ila? Khod compte privé b email o mot de passe dyalk o t7ekkem fih kamel.</p>
+        <ul class="vip-features">
+          <li>Compte kamel khass bik bo7dek</li>
+          <li>T9der t-dir fih 7tal 5 profils</li>
+          <li>4 écrans f nefs l-we9t (4K UHD)</li>
+          <li>T7ekkem kamel (Email + Pass)</li>
+        </ul>
+      </div>
+
+      <div class="vip-right">
+        <div class="price">65 DH <span>/ 1 Mois</span></div>
+        <div class="vip-sub">Garantie kamla • Tawssil fouri</div>
+        <button class="vip-btn" onclick="openModal('Account Privé Complet (1 Mois)', '65 DH')">Chri Compte Privé</button>
+      </div>
+    </div>
+
+    <!-- How It Works -->
+    <section class="steps-section" id="comment">
+      <div class="section-head" style="margin-top: 0;">
+        <h2>Kifach Kat-chri f 3 Khotowat?</h2>
+        <p>Tari9a sahla, sari3a o madmouna 100%</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h4>Khtar l-Offre</h4>
+          <p>Cliquez 3la "Chri Daba" o khtar smiytk o tari9at l-khlass.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h4>Khless b Sahoula</h4>
+          <p>Ghan-ssifto lik RIB (CIH, Attijari, CashPlus, Wafacash...).</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h4>Stalem F L-blassa</h4>
+          <p>Ghir katsift reçu, katwassel b l-profil + PIN wla l-compte f d9aye9.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+      <div class="section-head">
+        <h2>As2ila Metchahra (FAQ)</h2>
+        <p>Kolchi li khassk t3ref 9bel ma t-commandi</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Wach l-profil b 40 DH kaykoun khass biya bo7di?
+          <span>+</span>
+        </button>
+        <div class="faq-a">
+          Iyeh! Kolla client kayakhod profil dyalo bo7do o kaykoun m7mi b Code PIN khass bih bach ta wa7ed ma ydkhol lih.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Chno l-far9 bin Profil Privé (40 DH) o Account Privé (65 DH)?
+          <span>+</span>
+        </button>
+        <div class="faq-a">
+          Profil Privé (40 DH) kay3tik profil wa7ed khass bik b Code PIN. Amma Account Privé (65 DH) kay3tik l-compte kamel b Email o Mot de passe o t9der t-khdem bih f 4 écrans f nefs l-we9t.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Ch7al dyal l-we9t bach kaywassel l-compte?
+          <span>+</span>
+        </button>
+        <div class="faq-a">
+          Tawssil fouri! Mabin 2 7tal 5 d9aye9 mn ba3d ma kat-t2ekked l-khlass.
+        </div>
+      </div>
+    </section>
+
+    <!-- Payments -->
+    <div class="payments">
+      Toro9 l-Khlass l-Moutawafira f l-Maghrib:
+      <div class="pay-tags">
+        <span class="pay-tag">CIH Bank</span>
+        <span class="pay-tag">Attijariwafa Bank</span>
+        <span class="pay-tag">CashPlus</span>
+        <span class="pay-tag">Wafacash</span>
+        <span class="pay-tag">Bank of Africa (BMCE)</span>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2026 Wo Stream — Tous droits réservés.
+  </footer>
+
+  <!-- Floating WhatsApp Logo -->
+  <a href="#" id="floatWaBtn" class="wa-float" aria-label="Contact" title="Tawassel m3ana">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.766.469 3.484 1.344 5l-1.406 5.156 5.281-1.375c1.469.797 3.109 1.219 4.75 1.219 5.516 0 9.969-4.453 9.969-9.969S17.547 2 12.031 2zm5.813 14.125c-.25.703-1.438 1.344-2 1.422-.516.078-1.172.109-1.891-.125-.438-.141-1-.328-1.719-.641-3.016-1.313-4.984-4.359-5.141-4.563-.156-.203-1.234-1.641-1.234-3.125 0-1.484.781-2.219 1.063-2.516.281-.297.609-.375.813-.375.203 0 .406 0 .578.016.188.016.438-.078.688.516.25.609.859 2.094.938 2.25.078.156.125.344.031.547-.094.203-.141.328-.297.5-.156.172-.313.391-.453.516-.156.141-.313.297-.141.594.172.297.781 1.281 1.672 2.078 1.156 1.031 2.125 1.344 2.422 1.5.297.156.469.125.641-.078.172-.203.75-.875.953-1.172.203-.297.406-.25.672-.156.266.094 1.703.797 2 .953.297.156.484.219.563.344.078.125.078.734-.172 1.438z"/>
+    </svg>
+  </a>
+
+  <!-- Checkout Modal -->
+  <div class="modal-overlay" id="orderModal">
+    <div class="modal">
+      <button class="close-btn" onclick="closeModal()">&times;</button>
+      <h3>T2kid Talab</h3>
+      <div class="selected-info" id="selectedPlanText"></div>
+
+      <form id="orderForm">
+        <div class="form-group">
+          <label for="clientName">Smiytk:</label>
+          <input type="text" id="clientName" placeholder="Ex: Yassine" required />
+        </div>
+
+        <div class="form-group">
+          <label for="paymentMethod">Tari9at l-Khlass:</label>
+          <select id="paymentMethod">
+            <option value="CIH Bank">CIH Bank</option>
+            <option value="Attijariwafa Bank">Attijariwafa Bank</option>
+            <option value="CashPlus / Wafacash">CashPlus / Wafacash</option>
+            <option value="Bank of Africa (BMCE)">Bank of Africa (BMCE)</option>
+          </select>
+        </div>
+
+        <button type="submit" class="confirm-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.766.469 3.484 1.344 5l-1.406 5.156 5.281-1.375c1.469.797 3.109 1.219 4.75 1.219 5.516 0 9.969-4.453 9.969-9.969S17.547 2 12.031 2zm5.813 14.125c-.25.703-1.438 1.344-2 1.422-.516.078-1.172.109-1.891-.125-.438-.141-1-.328-1.719-.641-3.016-1.313-4.984-4.359-5.141-4.563-.156-.203-1.234-1.641-1.234-3.125 0-1.484.781-2.219 1.063-2.516.281-.297.609-.375.813-.375.203 0 .406 0 .578.016.188.016.438-.078.688.516.25.609.859 2.094.938 2.25.078.156.125.344.031.547-.094.203-.141.328-.297.5-.156.172-.313.391-.453.516-.156.141-.313.297-.141.594.172.297.781 1.281 1.672 2.078 1.156 1.031 2.125 1.344 2.422 1.5.297.156.469.125.641-.078.172-.203.75-.875.953-1.172.203-.297.406-.25.672-.156.266.094 1.703.797 2 .953.297.156.484.219.563.344.078.125.078.734-.172 1.438z"/>
+          </svg>
+          Sift Talab →
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const WHATSAPP_NUMBER = "212697999710";
+
+    let currentPlan = "";
+    let currentPrice = "";
+
+    const directWaUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Salam, bghit m3loumat 3la les offres.")}`;
+    document.getElementById("directWaBtn").href = directWaUrl;
+    document.getElementById("floatWaBtn").href = directWaUrl;
+
+    function openModal(plan, price) {
+      currentPlan = plan;
+      currentPrice = price;
+      document.getElementById("selectedPlanText").innerHTML =
+        `L-Offre: <strong>${plan}</strong> — Tamane: <strong>${price}</strong>`;
+      document.getElementById("orderModal").classList.add("active");
+    }
+
+    function closeModal() {
+      document.getElementById("orderModal").classList.remove("active");
+    }
+
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      item.classList.toggle("open");
+    }
+
+    window.onclick = function (e) {
+      const modal = document.getElementById("orderModal");
+      if (e.target === modal) closeModal();
+    };
+
+    document.getElementById("orderForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const name = document.getElementById("clientName").value.trim();
+      const payment = document.getElementById("paymentMethod").value;
+
+      const message =
+        `Salam! Bghit nchri had l-offre:\n` +
+        `• L-Offre: ${currentPlan}\n` +
+        `• Tamane: ${currentPrice}\n` +
+        `• Smiyti: ${name}\n` +
+        `• Tari9at l-Khlass: ${payment}`;
+
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      window.open(url, "_blank");
+      closeModal();
+    });
+  </script>
+
+</body>
+</html>
